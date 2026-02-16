@@ -9,7 +9,7 @@ const HistoryPage = () => {
             </p>
 
             <div style={{ background: 'var(--color-bg-card)', padding: '2rem', borderRadius: 'var(--border-radius-lg)' }}>
-                <p>No historical records found for this region in the last 30 days.</p>
+                <p>No historical  djvdhvd records found for this region in the last 30 days.</p>
             </div>
         </div>
     );

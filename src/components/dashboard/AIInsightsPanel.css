@@ -1,0 +1,107 @@
+.ai-insights-panel {
+    border: 1px solid rgba(13, 148, 136, 0.2);
+    /* Teal tint */
+    background: linear-gradient(to bottom, var(--color-bg-card), rgba(13, 148, 136, 0.02));
+}
+
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-md);
+}
+
+.title-group {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.title-group h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: var(--color-primary);
+}
+
+[data-theme='dark'] .title-group h3 {
+    color: var(--color-text-main);
+}
+
+.ai-icon {
+    color: var(--color-secondary);
+    font-size: 1.5rem;
+}
+
+.live-badge {
+    font-size: 0.65rem;
+    font-weight: 700;
+    background-color: rgba(16, 185, 129, 0.1);
+    color: var(--color-safe);
+    padding: 2px 8px;
+    border-radius: 12px;
+    letter-spacing: 0.5px;
+    border: 1px solid rgba(16, 185, 129, 0.2);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0.7;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.7;
+    }
+}
+
+.insights-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.insight-item {
+    display: flex;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md);
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: var(--border-radius-md);
+    border-left: 3px solid transparent;
+}
+
+[data-theme='dark'] .insight-item {
+    background-color: rgba(255, 255, 255, 0.03);
+}
+
+.insight-item.prediction {
+    border-left-color: var(--color-secondary);
+}
+
+.insight-item.advice {
+    border-left-color: var(--color-warning);
+}
+
+.insight-item.trend {
+    border-left-color: var(--color-primary);
+}
+
+.insight-icon {
+    margin-top: 2px;
+    color: var(--color-text-muted);
+}
+
+.insight-content p {
+    margin: 0 0 4px 0;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+.confidence-score {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    font-weight: 500;
+}

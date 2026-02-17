@@ -1,0 +1,218 @@
+.hero-risk-overview {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+}
+
+@media (max-width: 768px) {
+    .hero-risk-overview {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Risk Status Card */
+.risk-status-card {
+    background: linear-gradient(135deg, var(--color-primary-light), var(--color-primary));
+    color: white;
+    border-radius: var(--border-radius-lg);
+    padding: var(--spacing-lg);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+}
+
+/* Decorative glow */
+.risk-status-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, var(--risk-color) 0%, transparent 70%);
+    opacity: 0.2;
+    filter: blur(40px);
+}
+
+.status-header {
+    position: relative;
+    z-index: 1;
+}
+
+.status-label {
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    opacity: 0.8;
+}
+
+.status-value {
+    font-size: 2.5rem;
+    margin: var(--spacing-xs) 0;
+    color: var(--risk-color);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.risk-gauge {
+    position: absolute;
+    top: var(--spacing-lg);
+    right: var(--spacing-lg);
+    width: 100px;
+    height: 100px;
+}
+
+.gauge-circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.gauge-circle .score {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.gauge-circle .score-label {
+    font-size: 0.6rem;
+    opacity: 0.7;
+}
+
+.gauge-ring {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+}
+
+.ring-bg {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.1);
+    stroke-width: 2.5;
+}
+
+.ring-value {
+    fill: none;
+    stroke: var(--risk-color);
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    transition: stroke-dasharray 1s ease;
+}
+
+.risk-message {
+    margin-top: var(--spacing-lg);
+    background: rgba(255, 255, 255, 0.1);
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius-md);
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-md);
+    backdrop-filter: blur(4px);
+    z-index: 1;
+}
+
+.risk-message p {
+    margin: 0;
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.risk-message svg {
+    color: var(--risk-color);
+    flex-shrink: 0;
+}
+
+/* Weather Quick View */
+.weather-quick-view {
+    background-color: var(--color-bg-card);
+    border-radius: var(--border-radius-lg);
+    padding: var(--spacing-lg);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: var(--shadow-md);
+}
+
+.current-temp {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-lg);
+}
+
+.weather-icon-large {
+    color: var(--color-secondary);
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+.temp-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.temp-value {
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--color-primary);
+}
+
+.temp-desc {
+    font-size: 1.1rem;
+    color: var(--color-text-muted);
+}
+
+[data-theme='dark'] .temp-value {
+    color: var(--color-text-main);
+}
+
+.weather-details-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-lg);
+}
+
+.detail-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: var(--spacing-md);
+    background-color: var(--color-bg-body);
+    border-radius: var(--border-radius-md);
+    color: var(--color-text-muted);
+}
+
+[data-theme='dark'] .detail-item {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.detail-item span {
+    font-weight: 600;
+    color: var(--color-text-main);
+    margin: 4px 0;
+}
+
+.detail-item small {
+    font-size: 0.75rem;
+}

@@ -28,8 +28,11 @@ const Sidebar = ({ isCollapsed, toggleSidebar }) => {
     <aside className={`sidebar ${isCollapsed ? 'collapsed' : ''}`}>
       <div className="sidebar-header">
         <div className="sidebar-logo">
-          <BiShieldQuarter size={32} color="var(--color-secondary)" />
-          {!isCollapsed && <h1>ClimateShield</h1>}
+          {/* Only show icon if we want something in the sidebar top, or nothing if logo is in header. 
+              Let's keep just the icon for visual balance or as a "collapse" anchor. 
+           */}
+          <BiShieldQuarter size={28} />
+          {!isCollapsed && <span>Menu</span>}
         </div>
         <button className="collapse-btn" onClick={toggleSidebar}>
           {isCollapsed ? <BiChevronRight size={20} /> : <BiChevronLeft size={20} />}

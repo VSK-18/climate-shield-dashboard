@@ -1,5 +1,5 @@
 import React from 'react';
-import { BiCloudRain, BiSun, BiCloud, BiCloudLightning } from 'react-icons/bi';
+import { BiCloudRain, BiSun, BiCloud, BiCloudLightning, BiCalendarAlt, BiTimeFive } from 'react-icons/bi';
 import './ForecastSection.css';
 
 const ForecastSection = () => {
@@ -26,36 +26,51 @@ const ForecastSection = () => {
     ];
 
     return (
-        <div className="forecast-section">
-            <h3>Weather Forecast</h3>
-
-            <div className="hourly-forecast">
-                <h4 className="forecast-group-title">Hourly Trend</h4>
+        <div className="forecast-container">
+            <div className="forecast-block">
+                <div className="block-header">
+                    <BiTimeFive className="header-icon" />
+                    <div className="title-group">
+                        <h3>Critical Hourly Trend</h3>
+                        <span className="subtitle">High-resolution short-term prediction</span>
+                    </div>
+                </div>
                 <div className="hourly-scroller">
                     {hourlyForecast.map((item, index) => (
-                        <div key={index} className="hourly-item">
+                        <div key={index} className="hourly-card">
                             <span className="time">{item.time}</span>
-                            <div className="icon">{item.icon}</div>
+                            <div className="weather-icon">{item.icon}</div>
                             <span className="temp">{item.temp}</span>
-                            <span className="chance">💧{item.chance}</span>
+                            <div className="chance-indicator" style={{ '--chance': item.chance }}>
+                                <span className="chance-text">💧{item.chance}</span>
+                            </div>
                         </div>
                     ))}
                 </div>
             </div>
 
-            <div className="daily-forecast">
-                <h4 className="forecast-group-title">7-Day Outlook</h4>
+            <div className="forecast-block">
+                <div className="block-header">
+                    <BiCalendarAlt className="header-icon" />
+                    <div className="title-group">
+                        <h3>7-Day Climate Outlook</h3>
+                        <span className="subtitle">Extended preparation window</span>
+                    </div>
+                </div>
                 <div className="daily-list">
                     {dailyForecast.map((item, index) => (
-                        <div key={index} className="daily-item">
-                            <span className="day">{item.day}</span>
-                            <div className="condition-group">
-                                <span className="icon">{item.icon}</span>
-                                <span className="condition">{item.condition}</span>
+                        <div key={index} className="daily-row">
+                            <span className="day-name">{item.day}</span>
+                            <div className="weather-status">
+                                <span className="status-icon">{item.icon}</span>
+                                <span className="status-label">{item.condition}</span>
                             </div>
-                            <div className="temp-range">
-                                <span className="max">{item.max}</span>
-                                <span className="min">{item.min}</span>
+                            <div className="temp-split">
+                                <span className="high">{item.max}</span>
+                                <div className="temp-bar-bg">
+                                    <div className="temp-bar-fill"></div>
+                                </div>
+                                <span className="low">{item.min}</span>
                             </div>
                         </div>
                     ))}

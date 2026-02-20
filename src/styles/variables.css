@@ -1,15 +1,15 @@
 /* CSS Variables for ClimateShield AI Dashboard */
 :root {
   /* Color Palette - Light Mode (Default) - Premium Climate Tech */
-  --color-primary: #0A2540;
-  /* Deep Blue - Trust */
-  --color-secondary: #2EC4B6;
-  /* Teal - Climate/Action */
-  --color-accent: #FF9F1C;
-  /* Amber - Warning/Highlight */
+  --color-primary: #0F172A;
+  /* Slate 900 - Deep Trust */
+  --color-secondary: #0D9488;
+  /* Teal 600 - Climate/Action */
+  --color-accent: #F59E0B;
+  /* Amber 500 - Warning/Highlight */
 
-  --color-bg-body: #F0F4F8;
-  /* Subtle blue-grey bg */
+  --color-bg-body: #F8FAFC;
+  /* Slate 50 - Very subtle blue-grey bg */
   --color-bg-card: #FFFFFF;
   --color-bg-sidebar: #FFFFFF;
 
@@ -21,22 +21,26 @@
   /* Slate 400 */
   --color-text-inverse: #FFFFFF;
 
-  /* Alert Colors - High Contrast */
-  --color-safe: #10B981;
-  /* Emerald 500 */
-  --color-warning: #F59E0B;
-  /* Amber 500 */
-  --color-danger: #EF4444;
-  /* Red 500 */
+  /* Alert Colors - High Contrast (SDG 13 Palette) */
+  --color-safe: #059669;
+  /* Emerald 600 */
+  --color-warning: #D97706;
+  /* Amber 600 */
+  --color-danger: #DC2626;
+  /* Red 600 */
+
+  /* Alpha Color Variants */
+  --color-safe-alpha: rgba(5, 150, 105, 0.15);
+  --color-warning-alpha: rgba(217, 119, 6, 0.15);
+  --color-danger-alpha: rgba(220, 38, 38, 0.15);
 
   /* Gradients */
-  --gradient-deep: linear-gradient(135deg, #0A2540 0%, #1E293B 100%);
-  --gradient-teal: linear-gradient(135deg, #2EC4B6 0%, #0891B2 100%);
-  --gradient-card: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgba(248, 250, 252, 1) 100%);
-  --gradient-alert: linear-gradient(135deg, #EF4444 0%, #D97706 100%);
+  --gradient-deep: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+  --gradient-climate: linear-gradient(135deg, #0D9488 0%, #065F46 100%);
+  --gradient-card: linear-gradient(180deg, #FFFFFF 0%, #F1F5F9 100%);
 
   /* Typography */
-  --font-family-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-family-sans: 'Inter', -apple-system, system-ui, sans-serif;
   --font-size-xs: 0.75rem;
   --font-size-sm: 0.875rem;
   --font-size-base: 1rem;
@@ -44,30 +48,31 @@
   --font-size-xl: 1.25rem;
   --font-size-2xl: 1.5rem;
   --font-size-3xl: 2.25rem;
-  --font-size-4xl: 3rem;
+  --font-size-4xl: 3.5rem;
 
   /* Spacing */
   --spacing-xs: 0.25rem;
   --spacing-sm: 0.5rem;
   --spacing-md: 1rem;
   --spacing-lg: 1.5rem;
-  --spacing-xl: 2rem;
-  --spacing-2xl: 4rem;
+  --spacing-xl: 2.5rem;
+  --spacing-2xl: 5rem;
 
   /* Borders & Shadows - Soft and Modern */
   --border-radius-sm: 0.5rem;
-  --border-radius-md: 1rem;
-  --border-radius-lg: 1.5rem;
+  --border-radius-md: 0.875rem;
+  --border-radius-lg: 1.25rem;
   --border-radius-full: 9999px;
 
-  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
-  --shadow-md: 0 10px 15px -10px rgba(10, 37, 64, 0.1), 0 4px 6px -4px rgba(10, 37, 64, 0.05);
-  --shadow-lg: 0 20px 25px -5px rgba(10, 37, 64, 0.1), 0 10px 10px -5px rgba(10, 37, 64, 0.04);
-  --shadow-xl: 0 25px 50px -12px rgba(10, 37, 64, 0.25);
-  --shadow-premium: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.1), 0 2px 4px -2px rgba(15, 23, 42, 0.05);
+  --shadow-lg: 0 10px 15px -3px rgba(15, 23, 42, 0.1), 0 4px 6px -4px rgba(15, 23, 42, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(15, 23, 42, 0.1), 0 8px 10px -6px rgba(15, 23, 42, 0.05);
+  --shadow-premium: 0 0 0 1px rgba(15, 23, 42, 0.05), 0 10px 15px -3px rgba(15, 23, 42, 0.1);
 
-  --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* Animations */

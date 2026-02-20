@@ -1,5 +1,5 @@
 import React from 'react';
-import { BiErrorCircle, BiTime, BiCheckShield } from 'react-icons/bi';
+import { BiErrorCircle, BiTime, BiCheckShield, BiMapPin, BiRadiation } from 'react-icons/bi';
 import './AlertFeed.css';
 
 const AlertFeed = ({ onAlertClick }) => {
@@ -7,58 +7,77 @@ const AlertFeed = ({ onAlertClick }) => {
         {
             id: 1,
             type: 'critical',
-            title: 'Heatwave Warning – Pune',
-            severity: 'High Severity',
+            title: 'Heatwave Warning – District Wide',
+            severity: 'EMERGENCY',
             recommendation: 'Avoid outdoor activity between 12pm–4pm. Stay hydrated.',
             time: '10 min ago',
+            location: 'Pune, Maharashtra',
             coordinates: [18.5204, 73.8567]
         },
         {
             id: 2,
             type: 'warning',
             title: 'Flood Alert – Mula-Mutha River',
-            severity: 'Medium Severity',
+            severity: 'WARNING',
             recommendation: 'Low-lying areas should prepare for potential water rise.',
             time: '1 hour ago',
+            location: 'Kalyani Nagar',
             coordinates: [18.5580, 73.9130]
         },
         {
             id: 3,
             type: 'info',
             title: 'Air Quality Index Update',
-            severity: 'Low Risk',
+            severity: 'ADVISORY',
             recommendation: 'AQI is moderate. Sensitive groups should wear masks.',
             time: '3 hours ago',
+            location: 'Shivajinagar',
             coordinates: [18.5308, 73.8475]
         },
     ];
 
     return (
-        <div className="alert-feed">
-            <div className="feed-header">
-                <h3>Disaster Alert Panel</h3>
-                <span className="live-badge">Live System</span>
+        <div className="alert-feed-container">
+            <div className="panel-header">
+                <div className="title-stack">
+                    <span className="subtitle">ACTIVE THREAT MONITOR</span>
+                    <h3>Regional Disaster Alerts</h3>
+                </div>
+                <div className="status-badge live">
+                    <span className="dot pulse"></span> LIVE DATA
+                </div>
             </div>
 
-            <div className="alert-list">
+            <div className="alert-grid">
                 {alerts.map(alert => (
                     <div
                         key={alert.id}
-                        className={`alert-item ${alert.type}`}
+                        className={`alert-card ${alert.type}`}
                         onClick={() => onAlertClick && onAlertClick(alert.coordinates)}
                     >
-                        <div className="alert-top">
-                            <span className="severity-tag">{alert.severity}</span>
-                            <span className="alert-timestamp">
-                                <BiTime /> {alert.time}
-                            </span>
-                        </div>
+                        <div className="alert-accent-bar"></div>
+                        <div className="alert-body">
+                            <div className="alert-meta">
+                                <span className={`severity-tag ${alert.severity}`}>
+                                    {alert.severity}
+                                </span>
+                                <span className="timestamp">
+                                    <BiTime /> {alert.time}
+                                </span>
+                            </div>
 
-                        <h4 className="alert-title">{alert.title}</h4>
+                            <h4 className="alert-title">{alert.title}</h4>
 
-                        <div className="alert-recommendation">
-                            <BiCheckShield style={{ marginRight: '8px' }} />
-                            {alert.recommendation}
+                            <div className="alert-location">
+                                <BiMapPin /> {alert.location}
+                            </div>
+
+                            <div className="action-box">
+                                <div className="action-header">
+                                    <BiCheckShield /> <span>RECOMMENDED ACTION</span>
+                                </div>
+                                <p className="recommendation-text">{alert.recommendation}</p>
+                            </div>
                         </div>
                     </div>
                 ))}

@@ -1,48 +1,59 @@
 import React from 'react';
-import { BiBot, BiBulb, BiTrendingUp, BiWind, BiCloudRain } from 'react-icons/bi';
+import { BiBot, BiBulb, BiTrendingUp, BiWind, BiCloudRain, BiErrorCircle } from 'react-icons/bi';
 import './AIInsightsPanel.css';
 
 const AIInsightsPanel = () => {
     const insights = [
         {
-            type: 'prediction',
-            text: 'Heavy rainfall expected in 3 hours based on current cloud formation.',
+            type: 'hazard',
+            text: 'Heavy rainfall with risk of local flooding expected in 3 hours. Seek high ground if in low-lying areas.',
             confidence: 'High (89%)',
-            icon: <BiCloudRain />
+            icon: <BiErrorCircle />,
+            label: 'PREDICTION'
         },
         {
             type: 'advice',
-            text: 'Avoid outdoor activity between 12pm–4pm due to high heat index.',
-            confidence: 'System Logic',
-            icon: <BiBulb />
+            text: 'Heat stress risk is high for tomorrow afternoon. Schedule outdoor labor before 10 AM.',
+            confidence: 'Logical Inference',
+            icon: <BiBulb />,
+            label: 'GUIDANCE'
         },
         {
             type: 'trend',
-            text: 'Wind speeds increasing rapidly in the eastern sector. Secure loose items.',
+            text: 'Wind speeds projected to increase rapidly. Regional safety protocol activation recommended.',
             confidence: 'Medium (75%)',
-            icon: <BiWind />
+            icon: <BiTrendingUp />,
+            label: 'TREND ANALYSIS'
         }
     ];
 
     return (
-        <div className="ai-insights-panel">
-            <div className="panel-header">
-                <div className="title-group">
-                    <BiBot className="ai-icon" />
-                    <h3>AI Recommendations</h3>
+        <div className="ai-insights-dashboard">
+            <div className="assistant-header">
+                <div className="ai-brand">
+                    <div className="ai-icon-circle">
+                        <BiBot />
+                    </div>
+                    <div className="ai-title">
+                        <h3>Intelligence Insights</h3>
+                        <span className="ai-subtitle">POWERED BY CLIMATEAI ENGINE</span>
+                    </div>
                 </div>
-                <span className="live-badge">SMART ASSISTANT</span>
+                <div className="ai-status">
+                    <span className="dot pulse"></span> PROCESSING
+                </div>
             </div>
 
-            <div className="insights-list">
+            <div className="insights-vertical-list">
                 {insights.map((item, index) => (
-                    <div key={index} className={`insight-item ${item.type}`}>
-                        <div className="insight-icon">
-                            {item.icon}
+                    <div key={index} className={`insight-card ${item.type}`}>
+                        <div className="insight-header">
+                            <span className="insight-tag">{item.label}</span>
+                            <span className="confidence-pill">{item.confidence}</span>
                         </div>
-                        <div className="insight-content">
-                            <p>{item.text}</p>
-                            <span className="confidence-score">Confidence: {item.confidence}</span>
+                        <div className="insight-body">
+                            <div className="insight-icon-sm">{item.icon}</div>
+                            <p className="insight-text">{item.text}</p>
                         </div>
                     </div>
                 ))}

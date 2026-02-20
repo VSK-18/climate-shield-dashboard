@@ -1,141 +1,218 @@
-.hero-risk-overview {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--spacing-xl);
-    padding: var(--spacing-xl);
-    background: var(--gradient-deep);
+/* Hero Risk Dashboard Styles */
+.hero-risk-dashboard {
+    padding: var(--spacing-xl) 0;
+    width: 100%;
+}
+
+.hero-main-card {
+    background: var(--color-bg-card);
     border-radius: var(--border-radius-lg);
-    color: var(--color-text-inverse);
     box-shadow: var(--shadow-xl);
-    margin-bottom: var(--spacing-2xl);
+    padding: var(--spacing-xl);
     position: relative;
     overflow: hidden;
+    background: var(--gradient-card);
 }
 
-.hero-risk-overview::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -20%;
-    width: 100%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(46, 196, 182, 0.1) 0%, transparent 70%);
-    pointer-events: none;
-}
-
-.hero-content {
+.hero-header {
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    z-index: 1;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--spacing-xl);
+}
+
+.brand-badge {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    background: var(--color-primary);
+    color: white;
+    padding: var(--spacing-xs) var(--spacing-md);
+    border-radius: var(--border-radius-full);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+}
+
+.live-clock {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    font-size: var(--font-size-xs);
+    font-weight: 700;
+    color: var(--color-text-secondary);
+    letter-spacing: 0.05em;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    background: var(--color-danger);
+    border-radius: 50%;
+}
+
+.dot.pulse {
+    animation: pulse-danger 2s infinite;
+}
+
+.hero-content-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: var(--spacing-2xl);
+    align-items: center;
 }
 
 .hero-title {
-    font-size: var(--font-size-4xl);
-    font-weight: 800;
+    font-size: var(--font-size-3xl);
+    color: var(--color-primary);
     line-height: 1.1;
     margin-bottom: var(--spacing-sm);
-    background: linear-gradient(to right, #fff, var(--color-secondary));
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    font-weight: 800;
 }
 
 .hero-subtitle {
-    font-size: var(--font-size-xl);
-    color: var(--color-text-muted);
+    font-size: var(--font-size-lg);
+    color: var(--color-text-secondary);
     margin-bottom: var(--spacing-xl);
     font-weight: 500;
 }
 
-.risk-status-indicator {
+.status-banner {
     display: flex;
     align-items: center;
     gap: var(--spacing-lg);
-    padding: var(--spacing-md) var(--spacing-xl);
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
+    padding: var(--spacing-lg);
     border-radius: var(--border-radius-md);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    width: fit-content;
+    background: white;
+    box-shadow: var(--shadow-md);
+    border-left: 8px solid transparent;
 }
 
-.status-badge {
-    padding: var(--spacing-xs) var(--spacing-lg);
-    border-radius: var(--border-radius-full);
-    font-weight: 700;
-    letter-spacing: 1px;
-    font-size: var(--font-size-sm);
-    text-transform: uppercase;
-    box-shadow: 0 0 20px var(--status-color-alpha);
-    border: 1px solid var(--status-color);
-    color: var(--status-color);
+.status-banner.SAFE {
+    border-left-color: var(--color-safe);
 }
 
-.status-badge.EMERGENCY {
-    animation: pulse-danger 2s infinite;
+.status-banner.ALERT {
+    border-left-color: var(--color-warning);
 }
 
-.risk-score-display {
+.status-banner.EMERGENCY {
+    border-left-color: var(--color-danger);
+}
+
+.status-icon {
+    font-size: 2.5rem;
     display: flex;
-    flex-direction: column;
 }
 
-.score-value {
-    font-size: var(--font-size-2xl);
+.status-label {
+    display: block;
     font-weight: 800;
+    font-size: var(--font-size-sm);
+    margin-bottom: 2px;
 }
 
-.score-label {
-    font-size: var(--font-size-xs);
-    color: var(--color-text-muted);
-    text-transform: uppercase;
+.status-desc {
+    display: block;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
 }
 
-.hero-visual {
+/* Metrics Section */
+.risk-metrics {
     display: flex;
     flex-direction: column;
+    gap: var(--spacing-xl);
+}
+
+.metric-card.confidence {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xl);
+    background: rgba(255, 255, 255, 0.5);
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius-md);
+}
+
+.circular-progress {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: conic-gradient(var(--color-secondary) calc(var(--progress) * 1%), #e2e8f0 0);
+    display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.circular-progress::after {
+    content: "";
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background: white;
+    border-radius: 50%;
+}
+
+.progress-value {
     position: relative;
-    z-index: 1;
-}
-
-.weather-icon-container {
-    font-size: 8rem;
-    color: var(--color-secondary);
-    filter: drop-shadow(0 0 30px rgba(46, 196, 182, 0.3));
-    animation: float 4s ease-in-out infinite;
-    margin-bottom: var(--spacing-md);
-}
-
-.current-weather-summary {
+    z-index: 10;
     text-align: center;
+    display: flex;
+    flex-direction: column;
 }
 
-.main-temp {
-    font-size: 5rem;
+.progress-value .number {
+    font-size: var(--font-size-xl);
     font-weight: 800;
-    line-height: 1;
+    color: var(--color-primary);
 }
 
-.weather-desc {
-    font-size: var(--font-size-lg);
+.progress-value .label {
+    font-size: var(--font-size-xs);
     color: var(--color-text-muted);
     font-weight: 600;
 }
 
+.active-threat {
+    background: var(--color-primary);
+    color: white;
+    padding: var(--spacing-lg);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-lg);
+}
+
+.threat-label {
+    font-size: var(--font-size-xs);
+    font-weight: 700;
+    opacity: 0.7;
+    letter-spacing: 0.1em;
+}
+
+.threat-title {
+    font-size: var(--font-size-xl);
+    margin: var(--spacing-xs) 0 var(--spacing-md);
+    font-weight: 700;
+}
+
+.threat-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    font-size: var(--font-size-sm);
+    background: rgba(255, 255, 255, 0.1);
+    padding: var(--spacing-xs) var(--spacing-md);
+    border-radius: var(--border-radius-full);
+}
+
 @media (max-width: 1024px) {
-    .hero-risk-overview {
+    .hero-content-grid {
         grid-template-columns: 1fr;
-        text-align: center;
+        gap: var(--spacing-xl);
     }
+}
 
-    .hero-content {
-        align-items: center;
-    }
-
+@media (max-width: 768px) {
     .hero-title {
-        font-size: var(--font-size-3xl);
+        font-size: var(--font-size-2xl);
     }
 }

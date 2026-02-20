@@ -4,10 +4,10 @@ import './LiveWeatherStats.css';
 
 const LiveWeatherStats = () => {
     const stats = [
-        { label: 'Temperature', value: '28°C', icon: <BiSolidThermometer />, color: '#EF4444' },
-        { label: 'Humidity', value: '82%', icon: <BiWater />, color: '#3B82F6' },
-        { label: 'Wind Speed', value: '18 km/h', icon: <BiWind />, color: '#10B981' },
-        { label: 'Rain Probability', value: '90%', icon: <BiCloudRain />, color: '#6366F1' },
+        { label: 'Temperature', value: '28°C', icon: <BiSolidThermometer />, color: 'var(--color-danger)' },
+        { label: 'Humidity', value: '82%', icon: <BiWater />, color: 'var(--color-secondary)' },
+        { label: 'Wind Speed', value: '18 km/h', icon: <BiWind />, color: 'var(--color-safe)' },
+        { label: 'Rain Chance', value: '90%', icon: <BiCloudRain />, color: 'var(--color-accent)' },
     ];
 
     return (
@@ -19,7 +19,7 @@ const LiveWeatherStats = () => {
                     </div>
                     <div className="stat-info">
                         <span className="stat-label">{stat.label}</span>
-                        <span className="stat-value">{stat.value}</span>
+                        <h4 className="stat-value">{stat.value}</h4>
                     </div>
                 </div>
             ))}

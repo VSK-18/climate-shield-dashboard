@@ -1,12 +1,6 @@
 /* Alert Feed Styles - Disaster Focused */
 .alert-feed-container {
-    background: var(--color-bg-card);
-    border-radius: var(--border-radius-lg);
-    box-shadow: var(--shadow-lg);
-    padding: var(--spacing-lg);
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-lg);
+    padding: var(--spacing-xl) 0;
 }
 
 .alert-feed-container .panel-header {
@@ -32,30 +26,32 @@
 }
 
 .alert-grid {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-md);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--spacing-lg);
 }
 
 .alert-card {
+    position: relative;
+    padding: var(--spacing-lg);
     display: flex;
-    background: white;
-    border-radius: var(--border-radius-md);
-    overflow: hidden;
-    box-shadow: var(--shadow-sm);
+    flex-direction: column;
+    gap: var(--spacing-md);
     transition: var(--transition-normal);
-    cursor: pointer;
-    border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .alert-card:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
+    transform: translateY(-4px);
+    background: rgba(255, 255, 255, 0.05);
 }
 
 .alert-accent-bar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
     width: 6px;
-    flex-shrink: 0;
+    border-radius: 3px 0 0 3px;
 }
 
 .alert-card.critical .alert-accent-bar {
@@ -67,26 +63,7 @@
 }
 
 .alert-card.info .alert-accent-bar {
-    background: var(--color-secondary);
-}
-
-.alert-card.critical {
-    animation: pulse-danger-light 3s infinite;
-}
-
-@keyframes pulse-danger-light {
-    0% {
-        border-color: rgba(220, 38, 38, 0.1);
-    }
-
-    50% {
-        border-color: rgba(220, 38, 38, 0.4);
-        box-shadow: 0 0 15px rgba(220, 38, 38, 0.1);
-    }
-
-    100% {
-        border-color: rgba(220, 38, 38, 0.1);
-    }
+    background: var(--color-brand);
 }
 
 .alert-body {
@@ -104,23 +81,23 @@
 .severity-tag {
     font-size: 0.65rem;
     font-weight: 800;
-    padding: 2px var(--spacing-sm);
+    padding: 4px 12px;
     border-radius: var(--border-radius-full);
 }
 
-.severity-tag.EMERGENCY {
-    background: var(--color-danger-alpha);
+.severity-tag.critical {
+    background: rgba(239, 68, 68, 0.2);
     color: var(--color-danger);
 }
 
-.severity-tag.WARNING {
-    background: var(--color-warning-alpha);
+.severity-tag.warning {
+    background: rgba(245, 158, 11, 0.2);
     color: var(--color-warning);
 }
 
-.severity-tag.ADVISORY {
-    background: var(--color-safe-alpha);
-    color: var(--color-safe);
+.severity-tag.info {
+    background: rgba(20, 184, 166, 0.2);
+    color: var(--color-brand);
 }
 
 .timestamp {
@@ -133,42 +110,55 @@
 }
 
 .alert-title {
-    font-size: var(--font-size-base);
-    font-weight: 700;
-    color: var(--color-primary);
-    margin-bottom: var(--spacing-xs);
+    font-size: var(--font-size-lg);
+    font-weight: 800;
+    color: var(--color-text-primary);
 }
 
 .alert-location {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: var(--spacing-sm);
     font-size: var(--font-size-sm);
     color: var(--color-text-secondary);
-    margin-bottom: var(--spacing-md);
-    font-weight: 500;
 }
 
 .action-box {
-    background: var(--color-bg-body);
-    padding: var(--spacing-sm) var(--spacing-md);
-    border-radius: var(--border-radius-sm);
+    margin-top: var(--spacing-sm);
+    background: rgba(255, 255, 255, 0.03);
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius-md);
+    border: 1px solid var(--border-color);
 }
 
 .action-header {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: var(--spacing-sm);
     font-size: 0.7rem;
     font-weight: 800;
-    color: var(--color-primary);
-    margin-bottom: 4px;
-    opacity: 0.8;
+    color: var(--color-text-muted);
 }
 
 .recommendation-text {
+    margin-top: var(--spacing-xs);
     font-size: var(--font-size-sm);
+    line-height: 1.5;
     color: var(--color-text-secondary);
-    line-height: 1.4;
-    margin: 0;
+}
+
+.alert-card.critical {
+    animation: alert-glow 3s infinite;
+}
+
+@keyframes alert-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 0px rgba(239, 68, 68, 0);
+    }
+
+    50% {
+        box-shadow: 0 0 20px rgba(239, 68, 68, 0.15);
+    }
 }

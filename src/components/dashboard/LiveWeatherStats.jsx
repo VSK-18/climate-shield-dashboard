@@ -13,7 +13,7 @@ const LiveWeatherStats = () => {
     return (
         <div className="live-weather-grid">
             {stats.map((stat, index) => (
-                <div className="weather-stat-card" key={index}>
+                <div className="weather-stat-card glass-card" key={index}>
                     <div className="stat-icon-wrapper" style={{ color: stat.color, background: `${stat.color}10` }}>
                         {stat.icon}
                     </div>

@@ -28,7 +28,7 @@ const AIInsightsPanel = () => {
     ];
 
     return (
-        <div className="ai-insights-dashboard">
+        <div className="ai-insights-dashboard glass-card">
             <div className="assistant-header">
                 <div className="ai-brand">
                     <div className="ai-icon-circle">

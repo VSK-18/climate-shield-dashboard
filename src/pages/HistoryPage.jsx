@@ -1,16 +1,15 @@
 import React from 'react';
+import EmptyState from '../components/shared/EmptyState';
+import { BiHistory } from 'react-icons/bi';
 
 const HistoryPage = () => {
     return (
-        <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
-            <h1>Historical Data</h1>
-            <p style={{ color: 'var(--color-text-secondary)', marginBottom: '2rem' }}>
-                Archive of past weather events and disaster reports.
-            </p>
-
-            <div style={{ background: 'var(--color-bg-card)', padding: '2rem', borderRadius: 'var(--border-radius-lg)' }}>
-                <p>No historical  djvdhvd records found for this region in the last 30 days.</p>
-            </div>
+        <div style={{ padding: 'var(--spacing-xl)' }}>
+            <EmptyState
+                title="Historical Intelligence Archive"
+                message="Deep-learning analysis of past meteorological cycles is currently being serialized. Access point will be available upon completion."
+                icon={<BiHistory />}
+            />
         </div>
     );
 };

@@ -37,7 +37,7 @@ const ForecastSection = () => {
                 </div>
                 <div className="hourly-scroller">
                     {hourlyForecast.map((item, index) => (
-                        <div key={index} className="hourly-card">
+                        <div key={index} className="hourly-card glass-card">
                             <span className="time">{item.time}</span>
                             <div className="weather-icon">{item.icon}</div>
                             <span className="temp">{item.temp}</span>
@@ -59,7 +59,7 @@ const ForecastSection = () => {
                 </div>
                 <div className="daily-list">
                     {dailyForecast.map((item, index) => (
-                        <div key={index} className="daily-row">
+                        <div key={index} className="daily-row glass-card">
                             <span className="day-name">{item.day}</span>
                             <div className="weather-status">
                                 <span className="status-icon">{item.icon}</span>

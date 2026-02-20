@@ -27,7 +27,7 @@ const AnalyticsCharts = () => {
             </div>
 
             <div className="charts-vertical-stack">
-                <div className="analytics-card">
+                <div className="analytics-card glass-card">
                     <div className="card-top">
                         <BiPulse className="small-icon" />
                         <h4>Temperature Variance (°C)</h4>

@@ -1,122 +1,70 @@
-import React, { useEffect } from 'react';
-import { MapContainer, TileLayer, Circle, Popup, useMap } from 'react-leaflet';
-import { BiPlus, BiMinus, BiMapAlt, BiLayerPlus } from 'react-icons/bi';
+import { MapContainer, TileLayer, Circle, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
+import { BiMapAlt, BiTargetLock, BiLayer } from 'react-icons/bi';
 import './DisasterMap.css';
 
-// Fix for default Leaflet icon not showing
-import L from 'leaflet';
-import icon from 'leaflet/dist/images/marker-icon.png';
-import iconShadow from 'leaflet/dist/images/marker-shadow.png';
-
-let DefaultIcon = L.icon({
-    iconUrl: icon,
-    shadowUrl: iconShadow,
-    iconSize: [25, 41],
-    iconAnchor: [12, 41]
-});
-
-L.Marker.prototype.options.icon = DefaultIcon;
-
-const MapController = ({ center, zoom }) => {
-    const map = useMap();
-    useEffect(() => {
-        if (center) {
-            map.flyTo(center, zoom, {
-                animate: true,
-                duration: 1.5
-            });
-        }
-    }, [center, zoom, map]);
-    return null;
-};
-
-const DisasterMap = ({ mapCenter, mapZoom }) => {
-    const defaultPosition = [18.5204, 73.8567]; // Pune Center
+const DisasterMap = () => {
+    // Map configurations for dark-mode high-fidelity
+    const position = [20.5937, 78.9629]; // Center of India
 
     const riskZones = [
-        { center: [18.5204, 73.8567], radius: 4000, color: 'var(--color-danger)', name: 'Metropolitan Area - Extreme Heat Risk' },
-        { center: [18.5580, 73.9130], radius: 2500, color: 'var(--color-warning)', name: 'River Basin - Flood Advisory' },
-        { center: [18.5308, 73.8475], radius: 3500, color: 'var(--color-secondary)', name: 'Industrial Belt - Heavy Rainfall Zone' }
+        { id: 1, center: [19.0760, 72.8777], radius: 20000, color: 'var(--color-danger)', label: 'CRITICAL: High Flood Risk (Mumbai/Coast)' },
+        { id: 2, center: [28.6139, 77.2090], radius: 15000, color: 'var(--color-warning)', label: 'WARNING: Severe Heat Wave (Delhi NCR)' },
+        { id: 3, center: [13.0827, 80.2707], radius: 10000, color: 'var(--color-brand)', label: 'ADVISORY: Coastal Surge (Chennai)' }
     ];
 
     return (
-        <div className="disaster-map-dashboard">
-            <div className="section-header">
-                <BiMapAlt className="header-icon" />
-                <div className="title-group">
-                    <h3>Regional Hazard Matrix</h3>
-                    <span className="subtitle">Real-time geospatial risk modeling</span>
-                </div>
-            </div>
-
-            <div className="map-interface">
-                <div className="map-view-wrapper">
-                    <MapContainer center={defaultPosition} zoom={12} scrollWheelZoom={false} zoomControl={false}>
-                        <MapController center={mapCenter} zoom={mapZoom} />
-                        <TileLayer
-                            attribution='&copy; OpenStreetMap'
-                            url="https://{s}.tile.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
-                        />
-                        {riskZones.map((zone, idx) => (
-                            <Circle
-                                key={idx}
-                                center={zone.center}
-                                pathOptions={{
-                                    color: zone.color,
-                                    fillColor: zone.color,
-                                    fillOpacity: 0.35,
-                                    weight: 2
-                                }}
-                                radius={zone.radius}
-                            >
-                                <Popup>
-                                    <div className="map-popup">
-                                        <strong>{zone.name}</strong>
-                                        <p>Risk confidence: High</p>
-                                    </div>
-                                </Popup>
-                            </Circle>
-                        ))}
-                    </MapContainer>
-
-                    <div className="map-overlay-controls">
-                        <button className="ctrl-btn"><BiLayerPlus /></button>
-                        <div className="zoom-stack">
-                            <button className="ctrl-btn"><BiPlus /></button>
-                            <button className="ctrl-btn"><BiMinus /></button>
-                        </div>
+        <section className="disaster-map-section glass-card">
+            <div className="map-panel-header">
+                <div className="matrix-title">
+                    <BiMapAlt className="header-icon" />
+                    <div className="text-group">
+                        <h3>Regional Hazard Matrix</h3>
+                        <span className="live-indicator"><span className="dot pulse"></span> LIVE DATA FEED</span>
                     </div>
                 </div>
 
-                <div className="map-legend-professional">
-                    <div className="legend-title">RISK KEY</div>
-                    <div className="legend-items">
-                        <div className="legend-item">
-                            <span className="key-dot" style={{ background: 'var(--color-danger)' }}></span>
-                            <div className="key-info">
-                                <span className="key-label">CRITICAL</span>
-                                <span className="key-desc">Immediate Emergency</span>
-                            </div>
-                        </div>
-                        <div className="legend-item">
-                            <span className="key-dot" style={{ background: 'var(--color-warning)' }}></span>
-                            <div className="key-info">
-                                <span className="key-label">WARNING</span>
-                                <span className="key-desc">Active Alert</span>
-                            </div>
-                        </div>
-                        <div className="legend-item">
-                            <span className="key-dot" style={{ background: 'var(--color-secondary)' }}></span>
-                            <div className="key-info">
-                                <span className="key-label">ADVISORY</span>
-                                <span className="key-desc">Increased Vigilance</span>
-                            </div>
-                        </div>
-                    </div>
+                <div className="map-controls-premium">
+                    <button className="control-btn-icon"><BiTargetLock /></button>
+                    <button className="control-btn-icon"><BiLayer /></button>
                 </div>
             </div>
-        </div>
+
+            <div className="map-wrapper-premium">
+                <MapContainer center={position} zoom={5} style={{ height: '100%', width: '100%', borderRadius: 'var(--border-radius-md)' }}>
+                    <TileLayer
+                        url="https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png"
+                        attribution='&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>'
+                    />
+                    {riskZones.map(zone => (
+                        <Circle
+                            key={zone.id}
+                            center={zone.center}
+                            radius={zone.radius}
+                            pathOptions={{
+                                fillColor: zone.color,
+                                color: zone.color,
+                                fillOpacity: 0.2,
+                                weight: 2
+                            }}
+                        >
+                            <Popup>
+                                <div className="map-popup-dark">
+                                    <strong>{zone.label}</strong>
+                                    <p>Probability: 87% | Severity: High</p>
+                                </div>
+                            </Popup>
+                        </Circle>
+                    ))}
+                </MapContainer>
+
+                <div className="map-legend-premium">
+                    <div className="legend-item"><span className="dot" style={{ background: 'var(--color-danger)' }}></span> <span>Critical</span></div>
+                    <div className="legend-item"><span className="dot" style={{ background: 'var(--color-warning)' }}></span> <span>Warning</span></div>
+                    <div className="legend-item"><span className="dot" style={{ background: 'var(--color-brand)' }}></span> <span>Advisory</span></div>
+                </div>
+            </div>
+        </section>
     );
 };
 

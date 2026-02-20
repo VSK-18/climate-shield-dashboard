@@ -52,7 +52,7 @@ const AlertFeed = ({ onAlertClick }) => {
                 {alerts.map(alert => (
                     <div
                         key={alert.id}
-                        className={`alert-card ${alert.type}`}
+                        className={`alert-card glass-card ${alert.type}`}
                         onClick={() => onAlertClick && onAlertClick(alert.coordinates)}
                     >
                         <div className="alert-accent-bar"></div>

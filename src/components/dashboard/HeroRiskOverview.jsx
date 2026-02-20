@@ -17,21 +17,21 @@ const HeroRiskOverview = () => {
                     color: 'var(--color-safe)',
                     icon: <BiCheckCircle />,
                     badge: '🟢 SAFE',
-                    desc: 'No immediate threats detected.'
+                    desc: 'System Status: Optimal'
                 };
             case 'ALERT':
                 return {
                     color: 'var(--color-warning)',
                     icon: <BiInfoCircle />,
                     badge: '🟡 WARNING',
-                    desc: 'Elevated risks detected.'
+                    desc: 'System Status: Active Alert'
                 };
             case 'EMERGENCY':
                 return {
                     color: 'var(--color-danger)',
                     icon: <BiErrorCircle />,
                     badge: '🔴 EMERGENCY',
-                    desc: 'Immediate action required.'
+                    desc: 'System Status: Critical'
                 };
             default: return {};
         }
@@ -41,46 +41,48 @@ const HeroRiskOverview = () => {
 
     return (
         <section className="hero-risk-dashboard">
-            <div className="hero-main-card" style={{ borderTop: `4px solid ${config.color}` }}>
+            <div className="hero-main-card glass-card" style={{ borderLeft: `6px solid ${config.color}` }}>
                 <div className="hero-header">
-                    <div className="brand-badge">
-                        <BiShieldQuarter />
-                        <span>ClimateAI Intelligence</span>
+                    <div className="brand-badge-premium">
+                        <BiShieldQuarter className="brand-icon" />
+                        <span className="brand-text">CLIMATEAI INTELLIGENCE</span>
                     </div>
-                    <div className="live-clock">
-                        <span className="dot pulse"></span> LIVE MONITORING
+                    <div className="live-status-pill">
+                        <span className="dot pulse"></span>
+                        <span className="live-text">LIVE MONITORING</span>
                     </div>
                 </div>
 
-                <div className="hero-content-grid">
-                    <div className="risk-summary">
-                        <h1 className="hero-title">ClimateAI — AI-Powered Disaster Preparedness Dashboard</h1>
-                        <p className="hero-subtitle">Predict Early. Prepare Better. Protect Lives.</p>
+                <div className="hero-layout">
+                    <div className="hero-main-info">
+                        <h1 className="hero-display-title">ClimateAI — Disaster Preparedness</h1>
+                        <p className="hero-tagline">Predict Early. Prepare Better. Protect Lives.</p>
 
-                        <div className={`status-banner-badge ${riskLevel}`}>
-                            <span className="badge-text">{config.badge}</span>
-                            <span className="badge-desc">{config.desc}</span>
+                        <div className="risk-badge-box">
+                            <span className="badge-pill" style={{ background: `${config.color}20`, color: config.color }}>
+                                {config.badge}
+                            </span>
+                            <span className="badge-subtext">{config.desc}</span>
                         </div>
                     </div>
 
-                    <div className="risk-metrics">
-                        <div className="metric-card confidence">
-                            <div className="circular-progress" style={{ '--progress': riskScore }}>
-                                <div className="progress-value">
-                                    <span className="number">{riskScore}<span>%</span></span>
-                                </div>
+                    <div className="hero-stats-grid">
+                        <div className="stat-card">
+                            <div className="stat-header">
+                                <span className="stat-label">RISK CONFIDENCE</span>
+                                <span className="stat-value">{riskScore}%</span>
                             </div>
-                            <div className="metric-info">
-                                <h3>Risk Confidence</h3>
-                                <p>Predictive Modeling Accuracy</p>
+                            <div className="stat-progress-bar">
+                                <div className="progress-fill" style={{ width: `${riskScore}%`, background: 'var(--color-brand)' }}></div>
                             </div>
+                            <p className="stat-caption">AI-Driven Predictive Accuracy</p>
                         </div>
 
-                        <div className="active-threat">
-                            <span className="threat-label">PRIMARY THREAT</span>
-                            <h2 className="threat-title">{alertTitle}</h2>
-                            <div className="threat-meta">
-                                <BiCloudRain className="floating-icon" />
+                        <div className="stat-card secondary">
+                            <span className="stat-label">PRIMARY THREAT</span>
+                            <h3 className="threat-heading">{alertTitle}</h3>
+                            <div className="threat-footer">
+                                <BiCloudRain className="threat-icon anim-float" />
                                 <span>{weatherDesc} ({currentTemp}°C)</span>
                             </div>
                         </div>

@@ -1,23 +1,15 @@
 import React from 'react';
+import EmptyState from '../components/shared/EmptyState';
+import { BiRadar } from 'react-icons/bi';
 
 const Predictions = () => {
     return (
-        <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
-            <h1>AI Predictions</h1>
-            <p style={{ color: 'var(--color-text-secondary)', marginBottom: '2rem' }}>
-                Advanced forecasting models predicting weather patterns for the next 15 days.
-            </p>
-
-            <div style={{
-                background: 'var(--color-bg-card)',
-                padding: '2rem',
-                borderRadius: 'var(--border-radius-lg)',
-                textAlign: 'center',
-                border: '1px solid rgba(0,0,0,0.05)'
-            }}>
-                <h2>Coming Soon</h2>
-                <p>Our AI models are currently training on the latest satellite data.</p>
-            </div>
+        <div style={{ padding: 'var(--spacing-xl)' }}>
+            <EmptyState
+                title="AI Predictive Engine"
+                message="Neural models are currently processing real-time atmospheric data streams. Predictive insights will populate once the confidence threshold is met."
+                icon={<BiRadar />}
+            />
         </div>
     );
 };

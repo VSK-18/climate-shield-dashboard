@@ -15,10 +15,10 @@
 
   --color-text-primary: #0F172A;
   /* Slate 900 */
-  --color-text-secondary: #475569;
-  /* Slate 600 */
-  --color-text-muted: #94A3B8;
-  /* Slate 400 */
+  --color-text-secondary: #334155;
+  /* Slate 700 */
+  --color-text-muted: #64748b;
+  /* Slate 500 */
   --color-text-inverse: #FFFFFF;
 
   /* Alert Colors - High Contrast (SDG 13 Palette) */

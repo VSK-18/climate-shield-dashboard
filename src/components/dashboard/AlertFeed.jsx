@@ -1,5 +1,5 @@
 import React from 'react';
-import { BiErrorCircle, BiTime, BiCheckShield, BiMapPin, BiRadiation } from 'react-icons/bi';
+import { BiErrorCircle, BiTime, BiCheckShield, BiMapPin } from 'react-icons/bi';
 import './AlertFeed.css';
 
 const AlertFeed = ({ onAlertClick }) => {

@@ -17,11 +17,11 @@
   /* Red */
 
   /* Text Colors */
-  --color-text-main: #f8fafc;
-  /* Slate 50 */
-  --color-text-muted: #94a3b8;
-  /* Slate 400 */
-  --color-text-inverse: #1e293b;
+  --color-text-main: #0f172a;
+  /* Slate 900 */
+  --color-text-muted: #64748b;
+  /* Slate 500 */
+  --color-text-inverse: #f8fafc;
 
   /* Backgrounds */
   --color-bg-body: #f1f5f9;

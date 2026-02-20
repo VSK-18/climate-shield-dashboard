@@ -58,8 +58,8 @@ const AlertFeed = ({ onAlertClick }) => {
                         <div className="alert-accent-bar"></div>
                         <div className="alert-body">
                             <div className="alert-meta">
-                                <span className={`severity-tag ${alert.severity}`}>
-                                    {alert.severity}
+                                <span className={`severity-tag ${alert.type}`}>
+                                    {alert.type === 'critical' ? 'HIGH SEVERITY' : alert.type === 'warning' ? 'MEDIUM SEVERITY' : 'LOW SEVERITY'}
                                 </span>
                                 <span className="timestamp">
                                     <BiTime /> {alert.time}

@@ -23,14 +23,14 @@ const Dashboard = () => {
             {/* 1. HERO SECTION */}
             <HeroRiskOverview />
 
-            {/* 2. LIVE WEATHER OVERVIEW CARDS */}
+            {/* 2. ACTIVE ALERTS PANEL (Above the fold) */}
+            <AlertFeed onAlertClick={handleAlertClick} />
+
+            {/* 3. LIVE WEATHER OVERVIEW CARDS */}
             <LiveWeatherStats />
 
             <div className="dashboard-main-grid">
                 <div className="grid-left">
-                    {/* 3. DISASTER ALERT PANEL */}
-                    <AlertFeed onAlertClick={handleAlertClick} />
-
                     {/* 4. FORECAST SECTION */}
                     <ForecastSection />
 

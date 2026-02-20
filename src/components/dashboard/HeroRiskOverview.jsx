@@ -5,10 +5,10 @@ import './HeroRiskOverview.css';
 const HeroRiskOverview = () => {
     // Mock data for hackathon presentation
     const riskLevel = 'ALERT'; // SAFE, ALERT, EMERGENCY
-    const riskScore = 68;
+    const riskScore = 87;
     const currentTemp = 28;
     const weatherDesc = 'Heavy Rain Expected';
-    const alertTitle = 'Flood Advisory: Pune District';
+    const alertTitle = 'Flood Advisory: Regional Districts';
 
     const getStatusConfig = (level) => {
         switch (level) {
@@ -16,22 +16,22 @@ const HeroRiskOverview = () => {
                 return {
                     color: 'var(--color-safe)',
                     icon: <BiCheckCircle />,
-                    label: 'SYSTEM STATUS: SAFE',
-                    desc: 'No immediate threats detected in your region.'
+                    badge: '🟢 SAFE',
+                    desc: 'No immediate threats detected.'
                 };
             case 'ALERT':
                 return {
                     color: 'var(--color-warning)',
                     icon: <BiInfoCircle />,
-                    label: 'SYSTEM STATUS: ALERT',
-                    desc: 'Elevated risks detected. Monitor official channels.'
+                    badge: '🟡 WARNING',
+                    desc: 'Elevated risks detected.'
                 };
             case 'EMERGENCY':
                 return {
                     color: 'var(--color-danger)',
                     icon: <BiErrorCircle />,
-                    label: 'SYSTEM STATUS: EMERGENCY',
-                    desc: 'Immediate action required. Follow evacuation orders.'
+                    badge: '🔴 EMERGENCY',
+                    desc: 'Immediate action required.'
                 };
             default: return {};
         }
@@ -54,15 +54,12 @@ const HeroRiskOverview = () => {
 
                 <div className="hero-content-grid">
                     <div className="risk-summary">
-                        <h1 className="hero-title">ClimateAI – Disaster Preparedness Dashboard</h1>
-                        <p className="hero-subtitle">Predict early. Prepare better. Protect lives.</p>
+                        <h1 className="hero-title">ClimateAI — AI-Powered Disaster Preparedness Dashboard</h1>
+                        <p className="hero-subtitle">Predict Early. Prepare Better. Protect Lives.</p>
 
-                        <div className={`status-banner ${riskLevel}`}>
-                            <div className="status-icon">{config.icon}</div>
-                            <div className="status-text">
-                                <span className="status-label">{config.label}</span>
-                                <span className="status-desc">{config.desc}</span>
-                            </div>
+                        <div className={`status-banner-badge ${riskLevel}`}>
+                            <span className="badge-text">{config.badge}</span>
+                            <span className="badge-desc">{config.desc}</span>
                         </div>
                     </div>
 
@@ -71,12 +68,11 @@ const HeroRiskOverview = () => {
                             <div className="circular-progress" style={{ '--progress': riskScore }}>
                                 <div className="progress-value">
                                     <span className="number">{riskScore}<span>%</span></span>
-                                    <span className="label">Confidence</span>
                                 </div>
                             </div>
                             <div className="metric-info">
-                                <h3>AI Risk Score</h3>
-                                <p>Calculated based on GFS & ECMWF models</p>
+                                <h3>Risk Confidence</h3>
+                                <p>Predictive Modeling Accuracy</p>
                             </div>
                         </div>
 
@@ -84,7 +80,7 @@ const HeroRiskOverview = () => {
                             <span className="threat-label">PRIMARY THREAT</span>
                             <h2 className="threat-title">{alertTitle}</h2>
                             <div className="threat-meta">
-                                <BiCloudRain />
+                                <BiCloudRain className="floating-icon" />
                                 <span>{weatherDesc} ({currentTemp}°C)</span>
                             </div>
                         </div>

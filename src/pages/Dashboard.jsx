@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import HeroRiskPanel from '../components/dashboard/HeroRiskPanel';
-import WeatherCard from '../components/dashboard/WeatherCard';
-import DisasterMap from '../components/dashboard/DisasterMap';
+import HeroRiskOverview from '../components/dashboard/HeroRiskOverview';
+import LiveWeatherStats from '../components/dashboard/LiveWeatherStats';
 import AlertFeed from '../components/dashboard/AlertFeed';
-import SafetyPanel from '../components/dashboard/SafetyPanel';
+import ForecastSection from '../components/dashboard/ForecastSection';
+import AIInsightsPanel from '../components/dashboard/AIInsightsPanel';
 import AnalyticsCharts from '../components/dashboard/AnalyticsCharts';
+import DisasterMap from '../components/dashboard/DisasterMap';
 import './Dashboard.css';
 
 const Dashboard = () => {
@@ -19,18 +20,30 @@ const Dashboard = () => {
 
     return (
         <div className="dashboard-container">
-            <HeroRiskPanel />
+            {/* 1. HERO SECTION */}
+            <HeroRiskOverview />
 
-            <div className="dashboard-grid">
-                <div className="grid-col-left">
-                    <DisasterMap mapCenter={mapView.center} mapZoom={mapView.zoom} />
-                    <AnalyticsCharts />
+            {/* 2. LIVE WEATHER OVERVIEW CARDS */}
+            <LiveWeatherStats />
+
+            <div className="dashboard-main-grid">
+                <div className="grid-left">
+                    {/* 3. DISASTER ALERT PANEL */}
+                    <AlertFeed onAlertClick={handleAlertClick} />
+
+                    {/* 4. FORECAST SECTION */}
+                    <ForecastSection />
+
+                    {/* 5. AI INSIGHTS PANEL */}
+                    <AIInsightsPanel />
                 </div>
 
-                <div className="grid-col-right">
-                    <WeatherCard />
-                    <AlertFeed onAlertClick={handleAlertClick} />
-                    <SafetyPanel />
+                <div className="grid-right">
+                    {/* 6. DATA VISUALIZATION SECTION */}
+                    <AnalyticsCharts />
+
+                    {/* 7. OPTIONAL MAP SECTION */}
+                    <DisasterMap mapCenter={mapView.center} mapZoom={mapView.zoom} />
                 </div>
             </div>
         </div>

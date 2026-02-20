@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer
+    LineChart, Line, AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer
 } from 'recharts';
 import './AnalyticsCharts.css';
 
@@ -17,22 +17,71 @@ const data = [
 const AnalyticsCharts = () => {
     return (
         <div className="analytics-container">
-            <h3>Weekly Trends</h3>
-            <div className="chart-wrapper">
-                <ResponsiveContainer width="100%" height={250}>
-                    <LineChart data={data}>
-                        <CartesianGrid strokeDasharray="3 3" stroke="#eee" />
-                        <XAxis dataKey="name" fontSize={12} stroke="#888" />
-                        <YAxis fontSize={12} stroke="#888" />
-                        <Tooltip
-                            contentStyle={{ backgroundColor: 'var(--color-bg-card)', borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' }}
-                        />
-                        <Line type="monotone" dataKey="temp" stroke="var(--color-alert-warning)" strokeWidth={3} dot={{ r: 4 }} activeDot={{ r: 6 }} />
-                        <Line type="monotone" dataKey="rain" stroke="var(--color-secondary)" strokeWidth={3} dot={{ r: 4 }} activeDot={{ r: 6 }} />
-                    </LineChart>
-                </ResponsiveContainer>
+            <h3>Climate Data Visualization</h3>
+
+            <div className="charts-grid">
+                <div className="chart-item">
+                    <h4>Temperature Trend (°C)</h4>
+                    <div className="chart-wrapper">
+                        <ResponsiveContainer width="100%" height={200}>
+                            <LineChart data={data}>
+                                <CartesianGrid strokeDasharray="3 3" stroke="rgba(0,0,0,0.1)" vertical={false} />
+                                <XAxis dataKey="name" fontSize={10} stroke="#888" axisLine={false} tickLine={false} />
+                                <YAxis fontSize={10} stroke="#888" axisLine={false} tickLine={false} />
+                                <Tooltip
+                                    contentStyle={{
+                                        backgroundColor: 'var(--color-bg-card)',
+                                        borderRadius: '8px',
+                                        border: 'none',
+                                        boxShadow: 'var(--shadow-md)',
+                                        fontSize: '12px'
+                                    }}
+                                />
+                                <Line
+                                    type="monotone"
+                                    dataKey="temp"
+                                    stroke="var(--color-warning)"
+                                    strokeWidth={4}
+                                    dot={{ r: 4, fill: 'var(--color-warning)' }}
+                                    activeDot={{ r: 6 }}
+                                />
+                            </LineChart>
+                        </ResponsiveContainer>
+                    </div>
+                    <p className="chart-caption">Weekly temperature fluctuations showing a peak on Thursday followed by cooling.</p>
+                </div>
+
+                <div className="chart-item">
+                    <h4>Rain Probability (%)</h4>
+                    <div className="chart-wrapper">
+                        <ResponsiveContainer width="100%" height={200}>
+                            <AreaChart data={data}>
+                                <CartesianGrid strokeDasharray="3 3" stroke="rgba(0,0,0,0.1)" vertical={false} />
+                                <XAxis dataKey="name" fontSize={10} stroke="#888" axisLine={false} tickLine={false} />
+                                <YAxis fontSize={10} stroke="#888" axisLine={false} tickLine={false} />
+                                <Tooltip
+                                    contentStyle={{
+                                        backgroundColor: 'var(--color-bg-card)',
+                                        borderRadius: '8px',
+                                        border: 'none',
+                                        boxShadow: 'var(--shadow-md)',
+                                        fontSize: '12px'
+                                    }}
+                                />
+                                <Area
+                                    type="monotone"
+                                    dataKey="rain"
+                                    stroke="var(--color-secondary)"
+                                    fill="var(--color-secondary)"
+                                    fillOpacity={0.2}
+                                    strokeWidth={3}
+                                />
+                            </AreaChart>
+                        </ResponsiveContainer>
+                    </div>
+                    <p className="chart-caption">Rain probability significantly increases during the weekend (Fri-Sun).</p>
+                </div>
             </div>
-            <p className="chart-caption">Temperature (Yellow) vs Rainfall (Teal) trends.</p>
         </div>
     );
 };

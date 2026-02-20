@@ -1,218 +1,141 @@
 .hero-risk-overview {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: var(--spacing-lg);
-    margin-bottom: var(--spacing-xl);
-}
-
-@media (max-width: 768px) {
-    .hero-risk-overview {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* Risk Status Card */
-.risk-status-card {
-    background: linear-gradient(135deg, var(--color-primary-light), var(--color-primary));
-    color: white;
+    gap: var(--spacing-xl);
+    padding: var(--spacing-xl);
+    background: var(--gradient-deep);
     border-radius: var(--border-radius-lg);
-    padding: var(--spacing-lg);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    color: var(--color-text-inverse);
+    box-shadow: var(--shadow-xl);
+    margin-bottom: var(--spacing-2xl);
     position: relative;
     overflow: hidden;
-    box-shadow: var(--shadow-md);
 }
 
-/* Decorative glow */
-.risk-status-card::before {
+.hero-risk-overview::before {
     content: '';
     position: absolute;
     top: -50%;
-    right: -50%;
+    left: -20%;
     width: 100%;
-    height: 100%;
-    background: radial-gradient(circle, var(--risk-color) 0%, transparent 70%);
-    opacity: 0.2;
-    filter: blur(40px);
+    height: 200%;
+    background: radial-gradient(circle, rgba(46, 196, 182, 0.1) 0%, transparent 70%);
+    pointer-events: none;
 }
 
-.status-header {
-    position: relative;
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     z-index: 1;
 }
 
-.status-label {
-    text-transform: uppercase;
-    font-size: 0.75rem;
+.hero-title {
+    font-size: var(--font-size-4xl);
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: var(--spacing-sm);
+    background: linear-gradient(to right, #fff, var(--color-secondary));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-subtitle {
+    font-size: var(--font-size-xl);
+    color: var(--color-text-muted);
+    margin-bottom: var(--spacing-xl);
+    font-weight: 500;
+}
+
+.risk-status-indicator {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-lg);
+    padding: var(--spacing-md) var(--spacing-xl);
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: var(--border-radius-md);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    width: fit-content;
+}
+
+.status-badge {
+    padding: var(--spacing-xs) var(--spacing-lg);
+    border-radius: var(--border-radius-full);
+    font-weight: 700;
     letter-spacing: 1px;
-    opacity: 0.8;
+    font-size: var(--font-size-sm);
+    text-transform: uppercase;
+    box-shadow: 0 0 20px var(--status-color-alpha);
+    border: 1px solid var(--status-color);
+    color: var(--status-color);
 }
 
-.status-value {
-    font-size: 2.5rem;
-    margin: var(--spacing-xs) 0;
-    color: var(--risk-color);
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+.status-badge.EMERGENCY {
+    animation: pulse-danger 2s infinite;
 }
 
-.risk-gauge {
-    position: absolute;
-    top: var(--spacing-lg);
-    right: var(--spacing-lg);
-    width: 100px;
-    height: 100px;
+.risk-score-display {
+    display: flex;
+    flex-direction: column;
 }
 
-.gauge-circle {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
+.score-value {
+    font-size: var(--font-size-2xl);
+    font-weight: 800;
+}
+
+.score-label {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+}
+
+.hero-visual {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-}
-
-.gauge-circle .score {
-    font-size: 1.5rem;
-    font-weight: 700;
-    line-height: 1;
-}
-
-.gauge-circle .score-label {
-    font-size: 0.6rem;
-    opacity: 0.7;
-}
-
-.gauge-ring {
-    width: 100%;
-    height: 100%;
-    transform: rotate(-90deg);
-}
-
-.ring-bg {
-    fill: none;
-    stroke: rgba(255, 255, 255, 0.1);
-    stroke-width: 2.5;
-}
-
-.ring-value {
-    fill: none;
-    stroke: var(--risk-color);
-    stroke-width: 2.5;
-    stroke-linecap: round;
-    transition: stroke-dasharray 1s ease;
-}
-
-.risk-message {
-    margin-top: var(--spacing-lg);
-    background: rgba(255, 255, 255, 0.1);
-    padding: var(--spacing-md);
-    border-radius: var(--border-radius-md);
-    display: flex;
-    align-items: flex-start;
-    gap: var(--spacing-md);
-    backdrop-filter: blur(4px);
+    position: relative;
     z-index: 1;
 }
 
-.risk-message p {
-    margin: 0;
-    font-size: 0.9rem;
-    line-height: 1.4;
-}
-
-.risk-message svg {
-    color: var(--risk-color);
-    flex-shrink: 0;
-}
-
-/* Weather Quick View */
-.weather-quick-view {
-    background-color: var(--color-bg-card);
-    border-radius: var(--border-radius-lg);
-    padding: var(--spacing-lg);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    box-shadow: var(--shadow-md);
-}
-
-.current-temp {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-lg);
-}
-
-.weather-icon-large {
+.weather-icon-container {
+    font-size: 8rem;
     color: var(--color-secondary);
-    animation: float 3s ease-in-out infinite;
+    filter: drop-shadow(0 0 30px rgba(46, 196, 182, 0.3));
+    animation: float 4s ease-in-out infinite;
+    margin-bottom: var(--spacing-md);
 }
 
-@keyframes float {
-
-    0%,
-    100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-5px);
-    }
+.current-weather-summary {
+    text-align: center;
 }
 
-.temp-info {
-    display: flex;
-    flex-direction: column;
-}
-
-.temp-value {
-    font-size: 3.5rem;
-    font-weight: 700;
+.main-temp {
+    font-size: 5rem;
+    font-weight: 800;
     line-height: 1;
-    color: var(--color-primary);
 }
 
-.temp-desc {
-    font-size: 1.1rem;
+.weather-desc {
+    font-size: var(--font-size-lg);
     color: var(--color-text-muted);
-}
-
-[data-theme='dark'] .temp-value {
-    color: var(--color-text-main);
-}
-
-.weather-details-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--spacing-md);
-    margin-top: var(--spacing-lg);
-}
-
-.detail-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: var(--spacing-md);
-    background-color: var(--color-bg-body);
-    border-radius: var(--border-radius-md);
-    color: var(--color-text-muted);
-}
-
-[data-theme='dark'] .detail-item {
-    background-color: rgba(255, 255, 255, 0.05);
-}
-
-.detail-item span {
     font-weight: 600;
-    color: var(--color-text-main);
-    margin: 4px 0;
 }
 
-.detail-item small {
-    font-size: 0.75rem;
+@media (max-width: 1024px) {
+    .hero-risk-overview {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .hero-content {
+        align-items: center;
+    }
+
+    .hero-title {
+        font-size: var(--font-size-3xl);
+    }
 }

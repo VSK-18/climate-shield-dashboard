@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Sidebar from './Sidebar';
 import Header from './Header';
+import Footer from './Footer';
 import { Outlet } from 'react-router-dom';
 import './MainLayout.css';
 
@@ -41,6 +42,7 @@ const MainLayout = () => {
                 <main className="main-content">
                     <Outlet />
                 </main>
+                <Footer />
             </div>
         </div>
     );

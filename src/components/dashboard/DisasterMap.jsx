@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { MapContainer, TileLayer, Circle, Popup, useMap } from 'react-leaflet';
+import { BiPlus, BiMinus } from 'react-icons/bi';
 import 'leaflet/dist/leaflet.css';
 import './DisasterMap.css';
 
@@ -17,14 +18,13 @@ let DefaultIcon = L.icon({
 
 L.Marker.prototype.options.icon = DefaultIcon;
 
-// Helper component to change map view programmatically
 const MapController = ({ center, zoom }) => {
     const map = useMap();
     useEffect(() => {
         if (center) {
             map.flyTo(center, zoom, {
                 animate: true,
-                duration: 1.5 // Seconds
+                duration: 1.5
             });
         }
     }, [center, zoom, map]);
@@ -32,42 +32,50 @@ const MapController = ({ center, zoom }) => {
 };
 
 const DisasterMap = ({ mapCenter, mapZoom }) => {
-    const defaultPosition = [20.5937, 78.9629]; // India Center
+    const defaultPosition = [18.5204, 73.8567]; // Pune Center
 
     const riskZones = [
-        { center: [19.0760, 72.8777], radius: 15000, color: 'red', name: 'Mumbai - Flood Risk' },
-        { center: [28.7041, 77.1025], radius: 20000, color: 'orange', name: 'Delhi - Heatwave' },
-        { center: [12.9716, 77.5946], radius: 10000, color: 'blue', name: 'Bangalore - Heavy Rain' }
+        { center: [18.5204, 73.8567], radius: 5000, color: 'var(--color-danger)', name: 'Pune City - Heatwave High Risk' },
+        { center: [18.5580, 73.9130], radius: 3000, color: 'var(--color-warning)', name: 'Mula-Mutha River - Flood Warning' },
+        { center: [18.5308, 73.8475], radius: 4000, color: 'var(--color-secondary)', name: 'Shivajinagar - Heavy Rain Zone' }
     ];
 
     return (
         <div className="disaster-map-container">
             <div className="map-header">
-                <h3>Live Hazard Map</h3>
+                <h3>Regional Risk Matrix</h3>
                 <div className="map-legends">
-                    <span className="legend-item"><span className="dot red"></span> High Risk</span>
-                    <span className="legend-item"><span className="dot orange"></span> Moderate</span>
+                    <span className="legend-item"><span className="dot red"></span> Emergency</span>
+                    <span className="legend-item"><span className="dot orange"></span> Alert</span>
+                    <span className="legend-item"><span className="dot blue"></span> Advisory</span>
                 </div>
             </div>
+
             <div className="map-wrapper">
-                <MapContainer center={defaultPosition} zoom={5} scrollWheelZoom={false}>
+                <MapContainer center={defaultPosition} zoom={12} scrollWheelZoom={false} zoomControl={false}>
                     <MapController center={mapCenter} zoom={mapZoom} />
                     <TileLayer
                         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                        url="https://{s}.tile.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
                     />
                     {riskZones.map((zone, idx) => (
                         <Circle
                             key={idx}
                             center={zone.center}
-                            pathOptions={{ color: zone.color, fillColor: zone.color }}
+                            pathOptions={{ color: zone.color, fillColor: zone.color, fillOpacity: 0.3 }}
                             radius={zone.radius}
                         >
                             <Popup>{zone.name}</Popup>
                         </Circle>
                     ))}
                 </MapContainer>
+
+                <div className="static-zoom-controls">
+                    <button className="zoom-btn"><BiPlus /></button>
+                    <button className="zoom-btn"><BiMinus /></button>
+                </div>
             </div>
+            <p className="chart-caption">Interactive risk visualization showing color-coded hazard intensity across the region.</p>
         </div>
     );
 };

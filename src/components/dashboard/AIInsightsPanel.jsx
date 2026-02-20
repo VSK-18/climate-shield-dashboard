@@ -1,43 +1,44 @@
 import React from 'react';
-import { BiBot, BiBulb, BiTrendingUp } from 'react-icons/bi';
+import { BiBot, BiBulb, BiTrendingUp, BiWind, BiCloudRain } from 'react-icons/bi';
 import './AIInsightsPanel.css';
 
 const AIInsightsPanel = () => {
     const insights = [
         {
             type: 'prediction',
-            text: 'Heavy rainfall accumulation likely to exceed 50mm in the next 3 hours based on cloud density analysis.',
-            confidence: 'High (89%)'
+            text: 'Heavy rainfall expected in 3 hours based on current cloud formation.',
+            confidence: 'High (89%)',
+            icon: <BiCloudRain />
         },
         {
             type: 'advice',
-            text: 'Ground saturation is high. Avoid low-lying areas near the river bank.',
-            confidence: 'Medium (75%)'
+            text: 'Avoid outdoor activity between 12pm–4pm due to high heat index.',
+            confidence: 'System Logic',
+            icon: <BiBulb />
         },
         {
             type: 'trend',
-            text: 'Temperature expected to drop by 4°C by evening due to incoming cold front.',
-            confidence: 'High (92%)'
+            text: 'Wind speeds increasing rapidly in the eastern sector. Secure loose items.',
+            confidence: 'Medium (75%)',
+            icon: <BiWind />
         }
     ];
 
     return (
-        <div className="ai-insights-panel card">
+        <div className="ai-insights-panel">
             <div className="panel-header">
                 <div className="title-group">
                     <BiBot className="ai-icon" />
-                    <h3>AI Insights & Predictions</h3>
+                    <h3>AI Recommendations</h3>
                 </div>
-                <span className="live-badge">LIVE ANALYSIS</span>
+                <span className="live-badge">SMART ASSISTANT</span>
             </div>
 
             <div className="insights-list">
                 {insights.map((item, index) => (
                     <div key={index} className={`insight-item ${item.type}`}>
                         <div className="insight-icon">
-                            {item.type === 'prediction' && <BiTrendingUp />}
-                            {item.type === 'advice' && <BiBulb />}
-                            {item.type === 'trend' && <BiTrendingUp />}
+                            {item.icon}
                         </div>
                         <div className="insight-content">
                             <p>{item.text}</p>

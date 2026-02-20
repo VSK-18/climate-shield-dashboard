@@ -1,10 +1,10 @@
 import React from 'react';
-import { BiWater, BiWind, BiCloudRain, BiThermometer } from 'react-icons/bi';
+import { BiWater, BiWind, BiCloudRain, BiSolidThermometer } from 'react-icons/bi';
 import './LiveWeatherStats.css';
 
 const LiveWeatherStats = () => {
     const stats = [
-        { label: 'Temperature', value: '28°C', icon: <BiThermometer />, color: '#EF4444' },
+        { label: 'Temperature', value: '28°C', icon: <BiSolidThermometer />, color: '#EF4444' },
         { label: 'Humidity', value: '82%', icon: <BiWater />, color: '#3B82F6' },
         { label: 'Wind Speed', value: '18 km/h', icon: <BiWind />, color: '#10B981' },
         { label: 'Rain Probability', value: '90%', icon: <BiCloudRain />, color: '#6366F1' },
